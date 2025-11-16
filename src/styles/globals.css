@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    margin: auto;
+    background: #111;
+    color: #000;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+}
+
+#root {
+    min-height: 100vh;
+    padding-top: 24px;
+    background: #111;
+}
