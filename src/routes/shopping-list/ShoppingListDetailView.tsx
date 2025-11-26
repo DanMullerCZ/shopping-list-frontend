@@ -1,14 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useShoppingListDetail } from "./ShoppingListDetailProvider";
 import { ShoppingListInformation } from "../../components/shopping-list/ShoppingListInformation";
 import { ShoppingListMembers } from "../../components/shopping-list/ShoppingListMembers";
 import { ItemList } from "../../components/shopping-list/ItemList";
-import type {ShoppingListItem as ShoppingListItemType, ShoppingListUserRole} from "../../types/shoppingList";
+import type { ShoppingListItem as ShoppingListItemType, ShoppingListUserRole } from "../../types/shoppingList";
 
 export function ShoppingListDetailView() {
     const { list, loading, error, setList } = useShoppingListDetail();
     const [isEditing, setIsEditing] = useState(false);
     const [filter, setFilter] = useState<"all" | "notCompleted">("all");
+    const navigate = useNavigate();
 
     const getRandomRole = (enforcedIdx?: 0 | 1 | 2): ShoppingListUserRole => {
         const roles: ShoppingListUserRole[] = ["owner", "participant", "viewer"];
@@ -17,7 +19,7 @@ export function ShoppingListDetailView() {
     }
 
     // can get random role for testing purposes if index is not provided
-    const userRoleInList: ShoppingListUserRole = getRandomRole(2);
+    const userRoleInList: ShoppingListUserRole = getRandomRole(0);
 
     if (loading) {
         return <div style={{ padding: 16 }}>Loading…</div>;
@@ -44,7 +46,7 @@ export function ShoppingListDetailView() {
     };
 
     const handleBackButtonClick = () => {
-        alert("Homepage not implemented yet!");
+        navigate(-1);
     }
 
     const handleShoppingListDelete = () => {

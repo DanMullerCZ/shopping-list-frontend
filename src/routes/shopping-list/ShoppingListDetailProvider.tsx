@@ -6,14 +6,14 @@ import {
     type PropsWithChildren
 } from "react";
 import { useParams } from "react-router-dom";
-import type {ShoppingList} from "../../types/shoppingList";
-import { getShoppingList } from "../../api/shoppingList";
+import type { ShoppingList } from "../../types/shoppingList";
+import { getShoppingList, deleteShoppingList, updateShoppingList } from "../../api/shoppingList";
 
 interface ShoppingListDetailContextValue {
     list: ShoppingList | null;
     loading: boolean;
     error: string | null;
-    setList: (list: ShoppingList | null) => void;
+    setList: (list: ShoppingList | null) => void; // from component POV
 }
 
 const ShoppingListDetailContext =
@@ -32,7 +32,7 @@ export function useShoppingListDetail() {
 
 export function ShoppingListDetailProvider({ children }: PropsWithChildren) {
     const { id } = useParams<{ id: string }>();
-    const [list, setList] = useState<ShoppingList | null>(null);
+    const [list, _setList] = useState<ShoppingList | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -48,7 +48,7 @@ export function ShoppingListDetailProvider({ children }: PropsWithChildren) {
 
         getShoppingList(id)
             .then((data) => {
-                setList(data);
+                _setList(data);
             })
             .catch((err: Error) => {
                 setError(err.message);
@@ -57,6 +57,36 @@ export function ShoppingListDetailProvider({ children }: PropsWithChildren) {
                 setLoading(false);
             });
     }, [id]);
+
+    const setList = (value: ShoppingList | null) => {
+        if (value === null && id) {
+            setLoading(true);
+            setError(null);
+
+            deleteShoppingList(id)
+                .then(() => {
+                    _setList(null);
+                })
+                .catch((err: Error) => {
+                    setError(err.message);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+
+            return;
+        } else if(id && value) {
+            updateShoppingList(id, value)
+                .catch((err: Error) => {
+                    setError(err.message);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
+
+        _setList(value);
+    };
 
     return (
         <ShoppingListDetailContext.Provider
