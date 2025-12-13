@@ -40,14 +40,16 @@ const mockLists: ShoppingList[] = [
 
 let nextId = mockLists.length + 1;
 
-function delay(ms: number) {
+function delay(ms: number = globalDelay) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+const globalDelay = 1000;
 
 export async function getShoppingLists(
     status?: ShoppingListStatus
 ): Promise<ShoppingList[]> {
-    await delay(100);
+    await delay(globalDelay);
 
     if (!status) return mockLists;
 
@@ -55,7 +57,7 @@ export async function getShoppingLists(
 }
 
 export async function getShoppingList(id: string): Promise<ShoppingList> {
-    await delay(100);
+    await delay(globalDelay);
 
     const list = mockLists.find((l) => l.id === id);
     if (!list) {
@@ -66,7 +68,7 @@ export async function getShoppingList(id: string): Promise<ShoppingList> {
 }
 
 export async function deleteShoppingList(id: string): Promise<void> {
-    await delay(100);
+    await delay(globalDelay);
 
     const index = mockLists.findIndex((l) => l.id === id);
     if (index === -1) {
@@ -77,7 +79,7 @@ export async function deleteShoppingList(id: string): Promise<void> {
 }
 
 export async function updateShoppingList(id: string, list: ShoppingList): Promise<void> {
-    await delay(100);
+    await delay(globalDelay);
 
     const index = mockLists.findIndex((l) => l.id === id);
     if (index === -1) {
@@ -91,7 +93,7 @@ export async function createShoppingList(
     name: string,
     ownerName: string
 ): Promise<ShoppingList> {
-    await delay(100);
+    await delay(globalDelay);
 
     const newList: ShoppingList = {
         id: String(nextId++),
