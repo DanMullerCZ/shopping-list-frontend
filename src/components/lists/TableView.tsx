@@ -4,6 +4,7 @@ import type {
 } from "../../types/shoppingList";
 import { ShoppingListCard } from "./ShoppingListCard";
 import { EmptyShoppingListCard } from "./EmptyShoppingListCard";
+import {useTranslation} from "react-i18next";
 
 interface Props {
     lists: ShoppingList[];
@@ -12,10 +13,11 @@ interface Props {
 }
 
 export function TableView({ lists, status, onCreateList }: Props) {
+    const { t } = useTranslation();
     const isActive = status === "active";
 
     const handleClickCreate = () => {
-        const name = prompt("Name of the new shopping list:");
+        const name = prompt(t("PROMPTS.NEW_SHOPPING_LIST_NAME"));
         if (!name) return;
         onCreateList(name);
     };

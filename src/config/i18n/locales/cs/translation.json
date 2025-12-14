@@ -1,0 +1,48 @@
+{
+  "APP_NAME": "Nákupní seznamy",
+  "AUTHOR": "Autor",
+  "MEMBERS": "Členové",
+  "ACTIVE_EDIT": "Režim úprav je aktivní.",
+  "NOT_FOUND": "{{item}} nenalezen",
+  "DEFAULTS": {
+    "NEW_SHOPPING_LIST_ITEM": "Nová položka"
+  },
+  "STATE": {
+    "LOADING": "Načítám...",
+    "ERROR": "Chyba"
+  },
+  "BTN": {
+    "BACK": "Zpět",
+    "FINISH": "Dokončit",
+    "EDIT": "Upravit",
+    "DELETE": "Smazat",
+    "TABLE_CONTROL": {
+      "ACTIVE": "Aktivní",
+      "ARCHIVED": "Archivované"
+    },
+    "ITEMS_CONTROL": {
+      "NOT_COMPLETED": "Nedokončené",
+      "ALL": "Vše"
+    }
+  },
+  "PROMPTS": {
+    "NEW_SHOPPING_LIST_NAME": "Jméno nového seznamu:",
+    "ADD_SHOPPING_LIST": "Jste si jistý, že chcete přidat novou položku?",
+    "ENTER_EMAIL": "Zadejte emailovou adresu"
+  },
+  "CONFIRMS": {
+    "DELETE": {
+      "MEMBER": "Jste si jistý, že chcete smazat tohoto člena?",
+      "ITEM": "Jste si jistý, že chcete smazat tuto položku?",
+      "SHOPPING_LIST": "Jste si jistý, že chcete smazat celý nákupní seznam?"
+    }
+  },
+  "ALERTS": {
+    "INVITE_SENT": "Uživateli {{value}} byl odeslán zvací odkaz!",
+    "INVALID_EMAIL": "Neplatná emailová adresa!"
+  },
+  "MISC": {
+    "YOU": "vy",
+    "BY": "Od"
+  }
+}

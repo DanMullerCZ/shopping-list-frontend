@@ -1,0 +1,48 @@
+{
+  "APP_NAME": "ShoppingList App",
+  "AUTHOR": "Author",
+  "MEMBERS": "Members",
+  "ACTIVE_EDIT": "Edit mode is active.",
+  "NOT_FOUND": "{{item}} Not Found",
+  "DEFAULTS": {
+    "NEW_SHOPPING_LIST_ITEM": "New Item"
+  },
+  "STATE": {
+    "LOADING": "Loading...",
+    "ERROR": "Error"
+  },
+  "BTN": {
+    "BACK": "Back",
+    "FINISH": "Finish",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "TABLE_CONTROL": {
+      "ACTIVE": "Active",
+      "ARCHIVED": "Archived"
+    },
+    "ITEMS_CONTROL": {
+      "NOT_COMPLETED": "Not completed",
+      "ALL": "All"
+    }
+  },
+  "PROMPTS": {
+    "NEW_SHOPPING_LIST_NAME": "Name of the new shopping list:",
+    "ADD_SHOPPING_LIST": "Are you sure you want to add a shopping list?",
+    "ENTER_EMAIL": "Enter email address"
+  },
+  "CONFIRMS": {
+    "DELETE": {
+      "MEMBER": "Are you sure you want to delete this member?",
+      "ITEM": "Are you sure you want to delete this item?",
+      "SHOPPING_LIST": "Are you sure you want to delete whole shopping list?"
+    }
+  },
+  "ALERTS": {
+    "INVITE_SENT": "User {{value}} got invite link!",
+    "INVALID_EMAIL": "Invalid email address!"
+  },
+  "MISC": {
+    "YOU": "you",
+    "BY": "By"
+  }
+}

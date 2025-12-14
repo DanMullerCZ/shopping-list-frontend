@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { ShoppingList } from "../../types/shoppingList";
 import { useListOverview } from "../../routes/list-overview/ListOverviewProvider.tsx";
+import { useTranslation } from "react-i18next";
 
 interface Props {
     list: ShoppingList;
@@ -9,6 +10,7 @@ interface Props {
 
 export function ShoppingListCard({ list }: Props) {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const { userName } = useListOverview();
     const isArchived = list.status === "archived";
 
@@ -41,8 +43,8 @@ export function ShoppingListCard({ list }: Props) {
                     {list.name}
                 </div>
                 <div style={{ fontSize: 12, color: "#555" }}>
-                    Author: {list.ownerName}{" "}
-                    {list.ownerName === userName ? "(you)" : ""}
+                    {t("AUTHOR")}: {list.ownerName}{" "}
+                    {list.ownerName === userName ? `(${t("MISC.YOU")})` : ""}
                 </div>
             </div>
 

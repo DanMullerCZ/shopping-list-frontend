@@ -1,5 +1,6 @@
 import * as React from "react";
 import type { ShoppingListStatus } from "../../types/shoppingList";
+import {useTranslation} from "react-i18next";
 
 interface Props {
     status: ShoppingListStatus;
@@ -7,6 +8,8 @@ interface Props {
 }
 
 export function TableViewControls({ status, onChangeStatus }: Props) {
+    const { t } = useTranslation();
+
     const commonStyle: React.CSSProperties = {
         padding: "4px 12px",
         borderRadius: 999,
@@ -32,7 +35,7 @@ export function TableViewControls({ status, onChangeStatus }: Props) {
                 }}
                 onClick={() => onChangeStatus("active")}
             >
-                Active
+                {t("BTN.TABLE_CONTROL.ACTIVE")}
             </button>
             <button
                 style={{
@@ -42,7 +45,7 @@ export function TableViewControls({ status, onChangeStatus }: Props) {
                 }}
                 onClick={() => onChangeStatus("archived")}
             >
-                Archived
+                {t("BTN.TABLE_CONTROL.ARCHIVED")}
             </button>
         </div>
     );

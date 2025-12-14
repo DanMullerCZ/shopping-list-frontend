@@ -3,21 +3,23 @@ import { useListOverview } from "./ListOverviewProvider.tsx";
 import type { ShoppingListStatus } from "../../types/shoppingList";
 import { TableViewControls } from "../../components/lists/TableViewControls";
 import { TableView } from "../../components/lists/TableView";
+import {useTranslation} from "react-i18next";
 
 export function ListOverviewView() {
+    const { t } = useTranslation();
     const { lists, loading, error, createList  } = useListOverview();
     const [ status, setStatus ] = useState<ShoppingListStatus>("active");
 
     if (loading) {
         return (
-            <div style={{ padding: 16, textAlign: "center" }}>Loading…</div>
+            <div style={{ padding: 16, textAlign: "center" }}>{t("STATE.LOADING")}</div>
         );
     }
 
     if (error) {
         return (
             <div style={{ padding: 16, textAlign: "center", color: "red" }}>
-                Error: {error}
+                {t("STATE.ERROR")}: {error}
             </div>
         );
     }
@@ -39,7 +41,7 @@ export function ListOverviewView() {
             }}
         >
             <header style={{ textAlign: "center", marginBottom: 16 }}>
-                <h1 style={{ margin: 0, fontSize: 24 }}>ShoppingList App</h1>
+                <h1 style={{ margin: 0, fontSize: 24 }}>{t("APP_NAME")}</h1>
             </header>
 
             <TableViewControls status={status} onChangeStatus={setStatus} />

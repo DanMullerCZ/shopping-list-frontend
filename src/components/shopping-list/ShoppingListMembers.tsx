@@ -1,4 +1,5 @@
 import type {ShoppingListMember, ShoppingListUserRole} from "../../types/shoppingList";
+import { useTranslation } from "react-i18next";
 
 interface Props {
     members: ShoppingListMember[];
@@ -15,6 +16,8 @@ export function ShoppingListMembers({
                                         onAddMember,
                                         userRoleInList,
                                     }: Props) {
+    const { t } = useTranslation();
+
     return (
         <section style={{ marginBottom: 16 }}>
             <div
@@ -25,7 +28,7 @@ export function ShoppingListMembers({
                     marginBottom: 8
                 }}
             >
-                <p style={{ margin: 0, fontWeight: 600 }}>Members:</p>
+                <p style={{ margin: 0, fontWeight: 600 }}>{t("MEMBERS")}:</p>
                 {userRoleInList === "owner" && (
                     <img
                         src="/user-plus.svg"
@@ -53,7 +56,7 @@ export function ShoppingListMembers({
                                 }}
                                 onClick={() => onDeleteMember(member.id)}
                             >
-                                (delete)
+                                ({t("BTN.DELETE")})
                             </button>
                         )}
                     </li>

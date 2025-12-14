@@ -5,8 +5,10 @@ import { ShoppingListInformation } from "../../components/shopping-list/Shopping
 import { ShoppingListMembers } from "../../components/shopping-list/ShoppingListMembers";
 import { ItemList } from "../../components/shopping-list/ItemList";
 import type { ShoppingListItem as ShoppingListItemType, ShoppingListUserRole } from "../../types/shoppingList";
+import {useTranslation} from "react-i18next";
 
 export function ShoppingListDetailView() {
+    const { t } = useTranslation();
     const { list, loading, error, setList } = useShoppingListDetail();
     const [isEditing, setIsEditing] = useState(false);
     const [filter, setFilter] = useState<"all" | "notCompleted">("all");
@@ -22,15 +24,15 @@ export function ShoppingListDetailView() {
     const userRoleInList: ShoppingListUserRole = getRandomRole(0);
 
     if (loading) {
-        return <div style={{ padding: 16 }}>Loading…</div>;
+        return <div style={{ padding: 16 }}>{t("STATE.LOADING")}</div>;
     }
 
     if (error) {
-        return <div style={{ padding: 16 }}>Error: {error ?? "Unknown error"}</div>;
+        return <div style={{ padding: 16 }}>{t("STATE.ERROR")}: {error ?? "Unknown error"}</div>;
     }
 
     if (!list) {
-        return <div style={{ padding: 16 }}>List Not Found</div>;
+        return <div style={{ padding: 16 }}>{t("NOT_FOUND", { item: 'List' })}</div>;
     }
 
     const filteredItems =
@@ -50,14 +52,14 @@ export function ShoppingListDetailView() {
     }
 
     const handleShoppingListDelete = () => {
-        if(confirm("Are you sure you want to delete whole shopping list?")) {
+        if(confirm(t("CONFIRMS.DELETE.SHOPPING_LIST"))) {
             setList(null);
             handleBackButtonClick();
         }
     }
 
     const handleDeleteItem = (itemId: string) => {
-        if(confirm("Are you sure you want to delete this item?")) {
+        if(confirm(t("CONFIRMS.DELETE.ITEM"))) {
             const items = list.items.filter((item) => item.id !== itemId);
             setList({ ...list, items });
         }
@@ -75,8 +77,8 @@ export function ShoppingListDetailView() {
     };
 
     const handleAddItem = () => {
-        const defaultNewItemName = "New Item";
-        const itemName = prompt("Are you sure you want to add a shopping list?", defaultNewItemName);
+        const defaultNewItemName = t("DEFAULTS.NEW_SHOPPING_LIST_ITEM");
+        const itemName = prompt(t("PROMPTS.ADD_SHOPPING_LIST"), defaultNewItemName);
         if(itemName !== null) {
             const newItem: ShoppingListItemType = {
                 id: Math.random().toString(36).slice(2),
@@ -88,7 +90,7 @@ export function ShoppingListDetailView() {
     };
 
     const handleDeleteMember = (memberId: string) => {
-        if(confirm("Are you sure you want to delete this member?")) {
+        if(confirm(t("CONFIRMS.DELETE.MEMBER"))) {
             setList({
                 ...list,
                 members: list.members.filter((m) => m.id !== memberId)
@@ -98,12 +100,12 @@ export function ShoppingListDetailView() {
 
     const handleAddMember = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const value = prompt("Enter email address");
+        const value = prompt(t("PROMPTS.ENTER_EMAIL"));
         if (value !== null) {
             if(emailRegex.test(value)) {
-                alert(`User ${value} got invite link!`);
+                alert(t("ALERTS.INVITE_SENT", { value }));
             } else {
-                alert(`Invalid email address!`);
+                alert(t("ALERTS.INVALID_EMAIL"));
             }
         }
     }
@@ -118,25 +120,25 @@ export function ShoppingListDetailView() {
             }}
         >
             <header style={{ display: "flex", justifyContent: "space-between" }}>
-                {!isEditing ? (<button onClick={() => handleBackButtonClick()}>{"< Back"}</button>) : (<div></div>)}
+                {!isEditing ? (<button onClick={() => handleBackButtonClick()}>{"< " + t("BTN.BACK")}</button>) : (<div></div>)}
 
                 <div style={{ display: "flex", gap: 8 }}>
                     {!isEditing ? (
                         <>
                             {
                                 userRoleInList === "owner" ?
-                                    (<button onClick={() => handleShoppingListDelete()}>Delete</button>) :
+                                    (<button onClick={() => handleShoppingListDelete()}>{t("BTN.DELETE")}</button>) :
                                     (<></>)
                             }
                             {
                                 userRoleInList !== "viewer" ?
-                                    (<button onClick={() => setIsEditing(true)}>Edit ✏️</button>) :
+                                    (<button onClick={() => setIsEditing(true)}>{t("BTN.EDIT")} ✏️</button>) :
                                     (<></>)
                             }
 
                         </>
                     ) : (
-                        <button onClick={() => setIsEditing(false)}>Finish ✏️</button>
+                        <button onClick={() => setIsEditing(false)}>{t("BTN.FINISH")} ✏️</button>
                     )}
                 </div>
             </header>

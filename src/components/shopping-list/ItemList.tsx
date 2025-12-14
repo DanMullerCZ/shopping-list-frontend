@@ -1,5 +1,6 @@
 import type {ShoppingListItem, ShoppingListUserRole} from "../../types/shoppingList";
 import { ShoppingListItem as ShoppingListItemRow } from "./ShoppingListItem";
+import {useTranslation} from "react-i18next";
 
 interface Props {
     items: ShoppingListItem[];
@@ -24,6 +25,8 @@ export function ItemList({
                              onFilterChange,
                              userRoleInList,
                          }: Props) {
+    const { t } = useTranslation();
+
     return (
         <section>
             <div style={{ display: "flex", gap: 8, marginTop: 12, marginBottom: 6 }}>
@@ -37,7 +40,7 @@ export function ItemList({
                         color: filter === "all" ? "#000" : "#fff"
                     }}
                 >
-                    All
+                    {t("BTN.ITEMS_CONTROL.ALL")}
                 </button>
                 <button
                     onClick={() => onFilterChange("notCompleted")}
@@ -49,7 +52,7 @@ export function ItemList({
                         color: filter === "notCompleted" ? "#000" : "#fff"
                     }}
                 >
-                    Not completed
+                    {t("BTN.ITEMS_CONTROL.NOT_COMPLETED")}
                 </button>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>

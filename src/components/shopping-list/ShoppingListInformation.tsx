@@ -1,5 +1,6 @@
 import * as React from "react";
 import type {ShoppingListUserRole} from "../../types/shoppingList.ts";
+import {useTranslation} from "react-i18next";
 
 interface Props {
     name: string;
@@ -16,6 +17,7 @@ export function ShoppingListInformation({
                                             onEditShoppingListName,
                                             userRoleInList
                                         }: Props) {
+    const { t } = useTranslation();
 
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         onEditShoppingListName(e.target.value);
@@ -39,11 +41,11 @@ export function ShoppingListInformation({
                 <h1 style={{ fontSize: 28, marginBottom: 4 }}>{name}</h1>
             )}
 
-            <p style={{ marginBottom: 12, color: "#666" }}>By {ownerName}</p>
+            <p style={{ marginBottom: 12, color: "#666" }}>{t("MISC.BY")} {ownerName}</p>
 
             {isEditing && (
                 <p style={{ marginTop: 8, fontSize: 12, color: "#999" }}>
-                    Edit mode is active.
+                    {t("ACTIVE_EDIT")}
                 </p>
             )}
         </section>
