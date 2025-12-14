@@ -6,6 +6,7 @@ import { ShoppingListMembers } from "../../components/shopping-list/ShoppingList
 import { ItemList } from "../../components/shopping-list/ItemList";
 import type { ShoppingListItem as ShoppingListItemType, ShoppingListUserRole } from "../../types/shoppingList";
 import {useTranslation} from "react-i18next";
+import {CompletionPieChart} from "../../components/shopping-list/CompletionPieChart.tsx";
 
 export function ShoppingListDetailView() {
     const { t } = useTranslation();
@@ -149,6 +150,11 @@ export function ShoppingListDetailView() {
                 isEditing={isEditing}
                 onEditShoppingListName={handleEditShoppingListName}
                 userRoleInList={userRoleInList}
+            />
+
+            <CompletionPieChart
+                listItems={list.items}
+                isAnimationActive={true}
             />
 
             <ShoppingListMembers

@@ -40,8 +40,8 @@ export function ListOverviewProvider({ children }: PropsWithChildren) {
         setError(null);
 
         try {
-            const newList = await createShoppingList(name, userName);
-            setLists((prev) => [...prev, newList]);
+            await createShoppingList(name, userName);
+            setLists((prev) => [...prev]);
         } catch (err) {
             setError((err as Error).message);
         } finally {

@@ -4,6 +4,7 @@ import type { ShoppingListStatus } from "../../types/shoppingList";
 import { TableViewControls } from "../../components/lists/TableViewControls";
 import { TableView } from "../../components/lists/TableView";
 import {useTranslation} from "react-i18next";
+import {ListBarChart} from "../../components/lists/ListsBarChart.tsx";
 
 export function ListOverviewView() {
     const { t } = useTranslation();
@@ -43,6 +44,8 @@ export function ListOverviewView() {
             <header style={{ textAlign: "center", marginBottom: 16 }}>
                 <h1 style={{ margin: 0, fontSize: 24 }}>{t("APP_NAME")}</h1>
             </header>
+
+            <ListBarChart lists={filtered} />
 
             <TableViewControls status={status} onChangeStatus={setStatus} />
             <TableView lists={filtered} status={status} onCreateList={handleCreateList} />
