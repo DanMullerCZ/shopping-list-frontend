@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useListOverview } from "./ListOverviewProvider.tsx";
 import type { ShoppingListStatus } from "../../types/shoppingList";
-import { TableViewControls } from "../../components/lists/TableViewControls";
-import { TableView } from "../../components/lists/TableView";
-import {useTranslation} from "react-i18next";
-import {ListBarChart} from "../../components/lists/ListsBarChart.tsx";
+import { TableViewControls } from "../../components/core/lists/TableViewControls";
+import { TableView } from "../../components/core/lists/TableView";
+import { useTranslation } from "react-i18next";
+import { ListBarChart } from "../../components/core/lists/ListsBarChart.tsx";
 
 export function ListOverviewView() {
     const { t } = useTranslation();

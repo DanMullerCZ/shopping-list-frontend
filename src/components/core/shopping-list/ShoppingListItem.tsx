@@ -1,4 +1,4 @@
-import type { ShoppingListItem as ShoppingListItemType } from "../../types/shoppingList";
+import type { ShoppingListItem as ShoppingListItemType } from "../../../types/shoppingList.ts";
 import * as React from "react";
 
 interface Props {

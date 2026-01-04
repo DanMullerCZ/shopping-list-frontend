@@ -1,29 +1,30 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { useShoppingListDetail } from "./ShoppingListDetailProvider";
-import { ShoppingListInformation } from "../../components/shopping-list/ShoppingListInformation";
-import { ShoppingListMembers } from "../../components/shopping-list/ShoppingListMembers";
-import { ItemList } from "../../components/shopping-list/ItemList";
+import { ShoppingListInformation } from "../../components/core/shopping-list/ShoppingListInformation";
+import { ShoppingListMembers } from "../../components/core/shopping-list/ShoppingListMembers";
+import { ItemList } from "../../components/core/shopping-list/ItemList";
 import type { ShoppingListItem as ShoppingListItemType, ShoppingListUserRole } from "../../types/shoppingList";
-import {useTranslation} from "react-i18next";
-import {CompletionPieChart} from "../../components/shopping-list/CompletionPieChart.tsx";
+import { useTranslation } from "react-i18next";
+import { CompletionPieChart } from "../../components/core/shopping-list/CompletionPieChart.tsx";
+import { useAuth } from "../../auth/AuthContext.tsx";
 
 export function ShoppingListDetailView() {
     const { t } = useTranslation();
     const { list, loading, error, setList } = useShoppingListDetail();
+    const { setRoleInList } = useAuth();
     const [isEditing, setIsEditing] = useState(false);
     const [filter, setFilter] = useState<"all" | "notCompleted">("all");
     const navigate = useNavigate();
+    const [userRoleInList, setUserRoleInList] = useState<ShoppingListUserRole | null>(null);
 
-    const getRandomRole = (enforcedIdx?: 0 | 1 | 2): ShoppingListUserRole => {
-        const roles: ShoppingListUserRole[] = ["owner", "participant", "viewer"];
-        const index = Math.floor(Math.random() * roles.length);
-        return enforcedIdx !== undefined ? roles[enforcedIdx] : roles[index];
-    }
-
-    // can get random role for testing purposes if index is not provided
-    const userRoleInList: ShoppingListUserRole = getRandomRole(0);
-
+    useEffect(() => {
+        if (!list)
+            return;
+        const role = setRoleInList(list.id);
+        setUserRoleInList(role);
+    }, [list?.id]);
+    
     if (loading) {
         return <div style={{ padding: 16 }}>{t("STATE.LOADING")}</div>;
     }
@@ -33,6 +34,10 @@ export function ShoppingListDetailView() {
     }
 
     if (!list) {
+        return <div style={{ padding: 16 }}>{t("NOT_FOUND", { item: 'List' })}</div>;
+    }
+
+    if (!userRoleInList) {
         return <div style={{ padding: 16 }}>{t("NOT_FOUND", { item: 'List' })}</div>;
     }
 

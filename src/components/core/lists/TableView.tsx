@@ -1,9 +1,9 @@
 import type {
     ShoppingList,
     ShoppingListStatus
-} from "../../types/shoppingList";
-import { ShoppingListCard } from "./ShoppingListCard";
-import { EmptyShoppingListCard } from "./EmptyShoppingListCard";
+} from "../../../types/shoppingList.ts";
+import { ShoppingListCard } from "./ShoppingListCard.tsx";
+import { EmptyShoppingListCard } from "./EmptyShoppingListCard.tsx";
 import {useTranslation} from "react-i18next";
 
 interface Props {

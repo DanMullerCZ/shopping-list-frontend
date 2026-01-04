@@ -1,5 +1,5 @@
-import type {ShoppingListItem, ShoppingListUserRole} from "../../types/shoppingList";
-import { ShoppingListItem as ShoppingListItemRow } from "./ShoppingListItem";
+import type {ShoppingListItem, ShoppingListUserRole} from "../../../types/shoppingList.ts";
+import { ShoppingListItem as ShoppingListItemRow } from "./ShoppingListItem.tsx";
 import {useTranslation} from "react-i18next";
 
 interface Props {

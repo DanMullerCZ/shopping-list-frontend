@@ -6,13 +6,20 @@ export function LangSwitcher() {
 
     const handleLanguageChange = (e: ChangeEvent<HTMLSelectElement>) => {
         void i18n.changeLanguage(e.target.value);
-        // TODO: refresh page?
     };
+
+    const supportedLanguages = [
+        { name: "English", value: "en" },
+        { name: "Čeština", value: "cs" }
+    ] as const;
 
     return (
         <select onChange={handleLanguageChange} value={i18n.language}>
-            <option value='en'>English</option>
-            <option value='cs'>Čeština</option>
+            {
+                supportedLanguages.map((lang) => (
+                    <option key={lang.value} value={lang.value}>{lang.name}</option>
+                ))
+            }
         </select>
     );
 }

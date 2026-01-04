@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { ShoppingListStatus } from "../../types/shoppingList";
+import type { ShoppingListStatus } from "../../../types/shoppingList.ts";
 import {useTranslation} from "react-i18next";
 
 interface Props {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { ShoppingList } from "../../types/shoppingList";
-import { useListOverview } from "../../routes/list-overview/ListOverviewProvider.tsx";
+import type { ShoppingList } from "../../../types/shoppingList.ts";
+import { useListOverview } from "../../../routes/list-overview/ListOverviewProvider.tsx";
 import { useTranslation } from "react-i18next";
 
 interface Props {

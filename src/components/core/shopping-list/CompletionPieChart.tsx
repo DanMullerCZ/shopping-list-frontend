@@ -1,5 +1,5 @@
 import { Pie, PieChart, Tooltip } from 'recharts';
-import type {ShoppingListItem} from "../../types/shoppingList.ts";
+import type {ShoppingListItem} from "../../../types/shoppingList.ts";
 
 interface Props {
     listItems: ShoppingListItem[],

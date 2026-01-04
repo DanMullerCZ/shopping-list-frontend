@@ -1,7 +1,7 @@
-import {useState} from "react";
+import { useState } from "react";
 
 interface Props {
-    onCreate?: () => void; // you can wire it later
+    onCreate?: () => void;
 }
 
 export function EmptyShoppingListCard({ onCreate }: Props) {

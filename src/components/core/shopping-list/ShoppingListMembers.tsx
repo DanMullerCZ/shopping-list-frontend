@@ -1,4 +1,4 @@
-import type {ShoppingListMember, ShoppingListUserRole} from "../../types/shoppingList";
+import type {ShoppingListMember, ShoppingListUserRole} from "../../../types/shoppingList.ts";
 import { useTranslation } from "react-i18next";
 
 interface Props {

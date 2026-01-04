@@ -1,5 +1,5 @@
 import { BarChart, Legend, XAxis, YAxis, CartesianGrid, Tooltip, Bar } from 'recharts';
-import type { ShoppingList } from "../../types/shoppingList.ts";
+import type { ShoppingList } from "../../../types/shoppingList.ts";
 
 interface Props {
     lists: ShoppingList[];
